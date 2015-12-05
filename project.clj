@@ -6,4 +6,5 @@
                  [org.ow2.asm/asm "5.0.3"]]
 
  :source-paths ["src/clojure"]
- :java-source-paths ["src/java"])
+ :java-source-paths ["src/java"]
+ :aot :all)

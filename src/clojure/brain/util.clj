@@ -13,12 +13,12 @@
   "Compiles a string of BF code to JVM bytecode."
   [code cls-name num-cells]
   (-> code
-      (parse)
-      (ast->ir)
-      (optimize)
+      parse
+      ast->ir
+      optimize
       (ir->jvm cls-name num-cells)))
 
-(defn eval
+(defn eval-bf
   "Evaluates a BF code string."
   [code num-cells]
   (BytecodeLoader/callMain
@@ -29,7 +29,7 @@
   "Compiles a string of BF code to MIPS assembly"
   [code num-cells]
   (-> code
-      (parse)
-      (ast->ir)
-      (optimize)
+      parse
+      ast->ir
+      optimize
       (ir->spim num-cells)))
