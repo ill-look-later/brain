@@ -4,7 +4,7 @@ Brain
 
 Brain is a clojure library for compiling brainfuck (BF) code. It can also
 evaluate BF at runtime by loading the compiled JVM code at runtime, kinda like
-clojure.
+clojure or scala.
 
 Special Notes
 =============

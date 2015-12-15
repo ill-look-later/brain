@@ -5,6 +5,8 @@
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [org.ow2.asm/asm "5.0.3"]]
 
- :source-paths ["src/clojure"]
- :java-source-paths ["src/java"]
- :aot :all)
+  :plugins [[lein-codox "0.9.0"]]
+
+  :source-paths ["src/clojure"]
+  :java-source-paths ["src/java"]
+  :aot :all)

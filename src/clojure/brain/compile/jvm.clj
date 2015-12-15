@@ -75,7 +75,7 @@
     (.visitInsn Opcodes/CASTORE)))
 
 (defmethod convert-insn 'read [insn mw]
-  (dotimes [i (:times insn)]
+  (dotimes [_ (:times insn)]
     (doto mw
       (.visitVarInsn Opcodes/ALOAD 1)
       (.visitVarInsn Opcodes/ILOAD 2)
@@ -87,7 +87,7 @@
       (.visitInsn Opcodes/CASTORE))))
 
 (defmethod convert-insn 'write [insn mw]
-  (dotimes [i (:times insn)]
+  (dotimes [_ (:times insn)]
     (doto mw
       (.visitFieldInsn Opcodes/GETSTATIC "java/lang/System" "out"
                        "Ljava/io/PrintStream;")

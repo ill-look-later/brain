@@ -1,0 +1,651 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.12: http://docutils.sourceforge.net/" />
+<title>Compiler Conversions</title>
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 7614 2013-02-21 15:55:51Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { color: grey; } /* line numbers */
+pre.code, code { background-color: #eeeeee }
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+/* "booktabs" style (no vertical lines) */
+table.docutils.booktabs {
+  border: 0px;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+}
+table.docutils.booktabs * {
+  border: 0px;
+}
+table.docutils.booktabs th {
+  border-bottom: thin solid;
+  text-align: left;
+}
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="compiler-conversions">
+<h1 class="title">Compiler Conversions</h1>
+
+<p>The following sections document the representations and conversion performed by
+the compiler.</p>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#ast" id="id8">AST</a><ul>
+<li><a class="reference internal" href="#example" id="id9">Example</a><ul>
+<li><a class="reference internal" href="#bf-code" id="id10">BF Code</a></li>
+<li><a class="reference internal" href="#id1" id="id11">AST</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#intermediate-representation" id="id12">Intermediate Representation</a></li>
+<li><a class="reference internal" href="#jvm-bytecode" id="id13">JVM Bytecode</a><ul>
+<li><a class="reference internal" href="#start" id="id14">start</a></li>
+<li><a class="reference internal" href="#conversions" id="id15">Conversions</a></li>
+<li><a class="reference internal" href="#end" id="id16">end</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#mips-conversion" id="id17">MIPS Conversion</a><ul>
+<li><a class="reference internal" href="#id2" id="id18">Start</a></li>
+<li><a class="reference internal" href="#id3" id="id19">Conversions</a></li>
+<li><a class="reference internal" href="#id4" id="id20">End</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#c-conversion" id="id21">C Conversion</a><ul>
+<li><a class="reference internal" href="#id5" id="id22">Start</a></li>
+<li><a class="reference internal" href="#id6" id="id23">Conversions</a></li>
+<li><a class="reference internal" href="#id7" id="id24">End</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="ast">
+<h1><a class="toc-backref" href="#id8">AST</a></h1>
+<p>The toplevel node is a vector, and all [] loops are vectors.
+The other BF instructions translate as follows.</p>
+<div class="line-block">
+<div class="line">&lt; -&gt; shift-left</div>
+<div class="line">&gt; -&gt; shift-right</div>
+<div class="line">- -&gt; dec</div>
+<div class="line">+ -&gt; inc</div>
+<div class="line">, -&gt; read</div>
+<div class="line">. -&gt; write</div>
+</div>
+<div class="section" id="example">
+<h2><a class="toc-backref" href="#id9">Example</a></h2>
+<div class="section" id="bf-code">
+<h3><a class="toc-backref" href="#id10">BF Code</a></h3>
+<p>&lt;&gt;-+,.[&gt;]</p>
+</div>
+<div class="section" id="id1">
+<h3><a class="toc-backref" href="#id11">AST</a></h3>
+<div class="line-block">
+<div class="line">[shift-left</div>
+<div class="line-block">
+<div class="line">shift-right</div>
+<div class="line">dec</div>
+<div class="line">inc</div>
+<div class="line">read</div>
+<div class="line">write</div>
+<div class="line">[shift-right]]</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="intermediate-representation">
+<h1><a class="toc-backref" href="#id12">Intermediate Representation</a></h1>
+<p>The intermediate representation consists of 4 forms. Let # be some number.</p>
+<div class="line-block">
+<div class="line">{:op mc :val #}              - Modifies the cell pointer by adding # to it.</div>
+<div class="line">{:op mv :val #}              - Modifies the current cell value by adding # to it.</div>
+<div class="line">{:op read :times #}          - Reads a character value into the current cell # times.</div>
+<div class="line">{:op write :times #}         - Writes the character value of the current cell # times.</div>
+<div class="line">{:op loop :id # :body [...]} - Loops over its body in the same fashion as BF. # is a unique ID number.</div>
+</div>
+</div>
+<div class="section" id="jvm-bytecode">
+<h1><a class="toc-backref" href="#id13">JVM Bytecode</a></h1>
+<div class="section" id="start">
+<h2><a class="toc-backref" href="#id14">start</a></h2>
+<div class="line-block">
+<div class="line">.class public BFProgram</div>
+<div class="line">.super java/lang/Object</div>
+<div class="line"><br /></div>
+<div class="line">.method public &lt;init&gt;()V</div>
+<div class="line-block">
+<div class="line">aload_0</div>
+<div class="line">invokenonvirtual java/lang/Object/&lt;init&gt;()V</div>
+<div class="line">return</div>
+</div>
+<div class="line">.end method</div>
+<div class="line"><br /></div>
+<div class="line">.method public static main([Ljava/lang/String;)V</div>
+<div class="line-block">
+<div class="line">; .limit stack 2</div>
+<div class="line">; Create the array</div>
+<div class="line">sipush 30000</div>
+<div class="line">newarray char</div>
+<div class="line">astore_1</div>
+<div class="line"><br /></div>
+<div class="line">; Store the array pointer</div>
+<div class="line">iconst_0</div>
+<div class="line">istore_2</div>
+</div>
+</div>
+</div>
+<div class="section" id="conversions">
+<h2><a class="toc-backref" href="#id15">Conversions</a></h2>
+<div class="line-block">
+<div class="line">{:op mc :val #}</div>
+<div class="line-block">
+<div class="line">iinc 2, #</div>
+<div class="line"><br /></div>
+</div>
+<div class="line">{:op mv :val #}</div>
+<div class="line-block">
+<div class="line">aload_1</div>
+<div class="line">iload_2</div>
+<div class="line">dup2</div>
+<div class="line">caload</div>
+<div class="line">sipush #</div>
+<div class="line">iadd</div>
+<div class="line">i2c</div>
+<div class="line">castore</div>
+<div class="line"><br /></div>
+</div>
+<div class="line">{:op read :times #} - Repeat # times.</div>
+<div class="line-block">
+<div class="line">aload_1</div>
+<div class="line">iload_2</div>
+<div class="line">getstatic java/lang/System/in Ljava/io/InputStream;</div>
+<div class="line">invokevirtual java/io/InputStream/read()I</div>
+<div class="line">i2c</div>
+<div class="line">castore</div>
+<div class="line"><br /></div>
+</div>
+<div class="line">{:op write :times #} - Repeat # times.</div>
+<div class="line-block">
+<div class="line">getstatic java/lang/System/out Ljava/io/PrintStream;</div>
+<div class="line">aload_1</div>
+<div class="line">iload_2</div>
+<div class="line">caload</div>
+<div class="line">invokevirtual java/io/PrintStream/print(C)V</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<div class="line">{:op loop :id # :body [...]}</div>
+<div class="line">loop#:</div>
+<div class="line-block">
+<div class="line">aload_1</div>
+<div class="line">iload_2</div>
+<div class="line">caload</div>
+<div class="line">ifeq          end#</div>
+<div class="line">...</div>
+<div class="line">goto          loop#</div>
+</div>
+<div class="line">end#:</div>
+</div>
+</div>
+<div class="section" id="end">
+<h2><a class="toc-backref" href="#id16">end</a></h2>
+<div class="line-block">
+<div class="line-block">
+<div class="line">return</div>
+</div>
+<div class="line">.end method</div>
+</div>
+</div>
+</div>
+<div class="section" id="mips-conversion">
+<h1><a class="toc-backref" href="#id17">MIPS Conversion</a></h1>
+<p>Here's a quick sketch of how IR code should compile to MIPS.
+Note that the # is a number.</p>
+<div class="section" id="id2">
+<h2><a class="toc-backref" href="#id18">Start</a></h2>
+<div class="line-block">
+<div class="line-block">
+<div class="line">.data</div>
+</div>
+<div class="line">cells: .space 30000</div>
+<div class="line"><br /></div>
+<div class="line-block">
+<div class="line">.text</div>
+<div class="line">.globl main</div>
+<div class="line"><br /></div>
+</div>
+<div class="line">main:</div>
+<div class="line-block">
+<div class="line">la $t0, cells</div>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id19">Conversions</a></h2>
+<div class="line-block">
+<div class="line">{:op mc :val #}</div>
+<div class="line-block">
+<div class="line">add $t0, $t0, #</div>
+<div class="line"><br /></div>
+</div>
+<div class="line">{:op mv :val #}</div>
+<div class="line-block">
+<div class="line">lb $t1, 0($t0)</div>
+<div class="line">add $t1, $t1, #</div>
+<div class="line">sb $t1, 0($t0)</div>
+<div class="line"><br /></div>
+</div>
+<div class="line">{:op read :times #} - Repeat # times.</div>
+<div class="line-block">
+<div class="line">li $v0, 12</div>
+<div class="line">syscall</div>
+<div class="line">sb $v0, 0($t0)</div>
+<div class="line"><br /></div>
+</div>
+<div class="line">{:op write :times #} - Repeat <strong>only</strong> syscall # times.</div>
+<div class="line-block">
+<div class="line">li $v0, 11</div>
+<div class="line">lb $a0, 0($t0)</div>
+<div class="line">syscall</div>
+<div class="line"><br /></div>
+</div>
+<div class="line">{:op loop :id # :body [...]}</div>
+<div class="line-block">
+<div class="line">loop#:</div>
+<div class="line-block">
+<div class="line">lb $t1, 0($t0)</div>
+<div class="line">beqz $t1, end#</div>
+<div class="line"><br /></div>
+<div class="line">...</div>
+<div class="line"><br /></div>
+<div class="line">j loop#</div>
+</div>
+<div class="line">end#:</div>
+</div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2><a class="toc-backref" href="#id20">End</a></h2>
+<div class="line-block">
+<div class="line">li $v0, 10</div>
+<div class="line">syscall</div>
+</div>
+</div>
+</div>
+<div class="section" id="c-conversion">
+<h1><a class="toc-backref" href="#id21">C Conversion</a></h1>
+<p>Here's a quick sketch of how IR code should compile to C.
+Note that the # is a number.</p>
+<div class="section" id="id5">
+<h2><a class="toc-backref" href="#id22">Start</a></h2>
+<p>#include &lt;stdio.h&gt;</p>
+<div class="line-block">
+<div class="line">int main() {</div>
+<div class="line-block">
+<div class="line">char cells[30000] = {0};</div>
+<div class="line">char* ptr = cells;</div>
+</div>
+</div>
+</div>
+<div class="section" id="id6">
+<h2><a class="toc-backref" href="#id23">Conversions</a></h2>
+<div class="line-block">
+<div class="line">{:op mc :val #}</div>
+<div class="line-block">
+<div class="line">ptr += #;</div>
+<div class="line"><br /></div>
+</div>
+<div class="line">{:op mv :val #}</div>
+<div class="line-block">
+<div class="line">* ptr += #;</div>
+<div class="line"><br /></div>
+</div>
+<div class="line">{:op read :times #} - Repeat # times.</div>
+<div class="line-block">
+<div class="line">scanf(&quot;%c&quot;, ptr);</div>
+<div class="line"><br /></div>
+</div>
+<div class="line">{:op write :times #} - Repeat # times.</div>
+<div class="line-block">
+<div class="line">printf(&quot;%c&quot;, * ptr);</div>
+<div class="line"><br /></div>
+</div>
+<div class="line">{:op loop :id # :body [...]}</div>
+<div class="line-block">
+<div class="line">while(* ptr) {</div>
+<div class="line-block">
+<div class="line">...</div>
+</div>
+<div class="line">}</div>
+</div>
+</div>
+</div>
+<div class="section" id="id7">
+<h2><a class="toc-backref" href="#id24">End</a></h2>
+<div class="line-block">
+<div class="line-block">
+<div class="line">return 0;</div>
+</div>
+<div class="line">}</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

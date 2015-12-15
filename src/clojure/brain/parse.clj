@@ -3,9 +3,6 @@
 
 (declare parse-inst parse-loop)
 
-(defmacro unmatched-lbracket [] `(throw (Exception. "Unmatched [ found")))
-(defmacro unmatched-rbracket [] `(throw (Exception. "Unmatched ] found")))
-
 (defn parse
   "Parses a BF string into an AST form."
   [insts]
@@ -18,7 +15,7 @@
 (defn- parse-inst [insts]
   (case (first insts)
     \[ (parse-loop insts)
-    \] (unmatched-rbracket)
+    \] (throw (ex-info "Unmatched ] found" {:error 'parse :code insts}))
     [(case (first insts)
        \< 'shift-left
        \> 'shift-right
@@ -29,7 +26,7 @@
 
 (defn- parse-loop [insts]
   (loop [body [] insts (rest insts)]
-    (cond (empty? insts) (unmatched-lbracket)
+    (cond (empty? insts) (throw (ex-info "Unmatched [ found" {:error 'parse :code insts}))
           (= (first insts) \]) [body (rest insts)]
           :else (let [[term insts] (parse-inst insts)]
                   (recur (conj body term) insts)))))
